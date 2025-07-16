@@ -1,0 +1,4 @@
+--dotfiles
+--dir ./stow
+--target ~
+
