@@ -1,0 +1,60 @@
+# Reference: https://www.nano-editor.org/dist/latest/nanorc.5.html
+
+#------------------------------------------------------------------------------
+# Syntax highlighting
+#------------------------------------------------------------------------------
+
+# Here ~/.config/nano/share is expected to be a symlink to a folder with syntax
+# highlighting configs provided with nano installation
+include "~/.config/nano/share/*.nanorc"
+
+#------------------------------------------------------------------------------
+# UI and controls
+#------------------------------------------------------------------------------
+
+# enable mouse support
+set mouse
+
+# use bold text instead of inverted background
+set boldtext
+
+# display line numbers
+set linenumbers
+
+# always show cursor position
+set constantshow
+
+# make selection visible
+set selectedcolor black,yellow
+
+# top right corner
+# I - auto-indent enabled
+# S - soft-wrapping enabled
+# L - hard-wrapping enabled
+# M - marking mode
+# R - recording a macro
+set stateflags
+
+# remember cursor position after closing file
+set positionlog
+
+#------------------------------------------------------------------------------
+# Editing
+#------------------------------------------------------------------------------
+
+# enable automatic indents
+set autoindent
+
+# do not force newline at the end of a file
+set nonewlines
+
+# make 'home' key jump at the actual beginning of a line
+set smarthome
+
+# delete full selected region
+set zap
+
+# opinionated choices
+set tabsize 4
+set tabstospaces
+#set guidestripe 81
