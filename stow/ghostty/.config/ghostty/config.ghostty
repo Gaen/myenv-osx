@@ -1,0 +1,9 @@
+theme = Dark Modern
+minimum-contrast = 1.5
+window-padding-balance = true
+macos-option-as-alt = true
+macos-icon = xray
+shell-integration-features = no-cursor
+
+keybind = alt+arrow_left=unbind
+keybind = alt+arrow_right=unbind
