@@ -108,6 +108,9 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 alias cat=ccat
 alias less=cless
 
+# Less: show colors, scroll with mouse
+export LESS='-R --mouse'
+
 # Not today, vim
 export EDITOR='nano'
 
