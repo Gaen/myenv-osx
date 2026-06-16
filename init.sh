@@ -28,7 +28,7 @@ init_homebrew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   # We are going to rewrite .zprofile, so backup it first
-  if [ -s "$HOME/.zprofile" && ! -e "$HOME/.zprofile.pre-myenv" ]; then
+  if [ -s "$HOME/.zprofile" ] && [ ! -e "$HOME/.zprofile.pre-myenv" ]; then
     mv "$HOME/.zprofile" "$HOME/.zprofile.pre-myenv"
     log "Existing .zprofile saved as .zprofile.pre-myenv"
   fi
