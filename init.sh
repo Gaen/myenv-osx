@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # This is a script for bootstrapping the environment after fresh OS installation.
 # It tries to be idempotent, but there are still some redundant effects.
@@ -308,7 +309,7 @@ init_mise() {
 init_omz() {
 
   # Install oh-my-zsh if not present
-  if [ -n "$ZSH" ] && [ -d "$ZSH" ]; then
+  if [ -n "${ZSH:-}" ] && [ -d "${ZSH:-}" ]; then
     log 'Present: oh-my-zsh'
   else
     
