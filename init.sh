@@ -287,6 +287,19 @@ init_chroma() {
   fi
 }
 
+# Install mise
+init_mise() {
+
+  # Install if not present
+  if [ $(which mise) ]; then
+    log 'Present: mise'
+  else
+    log 'Installing: mise'
+    brew install mise
+    log 'Installed: mise'
+  fi
+}
+
 # Install and configure oh-my-zsh
 #
 # This will rewrite .zshrc file!
@@ -327,37 +340,6 @@ init_omz() {
   stow zsh && log 'Configured: zsh' || log 'Not configured: zsh'
 }
 
-# Install nvm
-init_nvm() {
-
-  # Install if not present
-  if [ -n "$NVM_DIR" ] && [ -s "$NVM_DIR/nvm.sh" ]; then
-    log 'Present: nvm'
-  else
-    
-    log 'Installing: nvm'
-
-    # Install from homebrew.
-    #
-    # Maintainers of nvm explicitly state that managing nvm via homebrew is not
-    # oficially supported, but this way we get automatic updates.
-    #
-    # Our .zshrc is already configured to use nvm from homebrew.
-    brew install nvm
-    
-    # $NVM_DIR is already set in our .zshrc but we need to create it
-    [ -d "$NVM_DIR" ] || mkdir -p "$NVM_DIR"
-
-    # Activate nvm in current session.
-    # On first run it will create a symlink for `nvm.sh`` inside $NVM_DIR.
-    # Our .zshrc will use that symlink to load nvm from $NVM_DIR instead of
-    # calling `brew --prefix nvm` - this is a perfomance optimization.
-    source "$(brew --prefix nvm)/nvm.sh"
-    
-    log 'Installed: nvm'
-  fi
-}
-
 init_homebrew
 init_basictools
 init_stow
@@ -367,8 +349,8 @@ init_vim
 init_git
 init_delta
 init_chroma
+init_mise
 init_omz 
-init_nvm
 
 log 'All done!'
 

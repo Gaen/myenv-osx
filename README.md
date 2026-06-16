@@ -14,8 +14,8 @@ It brings the following:
 - `nano` + config
 - `vim` + config
 - `git` + config
+- `mise`
 - `oh-my-zsh` + `.zshrc`
-- `nvm`
 
 
 ## Install
