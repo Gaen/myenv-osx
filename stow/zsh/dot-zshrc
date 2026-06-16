@@ -74,6 +74,29 @@ source $ZSH/oh-my-zsh.sh
 # Syntax highlight - must be sourced after oh-my-zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Fix colorize_less to forward ZSH_COLORIZE_CHROMA_FORMATTER
+# This is a known bug, the fix is expected to be merged soon
+# https://github.com/ohmyzsh/ohmyzsh/pull/13781
+colorize_less() {
+    if ! colorize_check_requirements; then
+        return 1
+    fi
+    _cless() {
+        local LESS="-R $LESS"
+        local LESSOPEN="| zsh -c 'source \"$ZSH_COLORIZE_PLUGIN_PATH\"; \
+        ZSH_COLORIZE_TOOL=$ZSH_COLORIZE_TOOL ZSH_COLORIZE_STYLE=$ZSH_COLORIZE_STYLE \
+        ZSH_COLORIZE_CHROMA_FORMATTER=$ZSH_COLORIZE_CHROMA_FORMATTER \
+        colorize_cat %s 2> /dev/null'"
+        local LESSCLOSE=""
+        LESS="$LESS" LESSOPEN="$LESSOPEN" LESSCLOSE="$LESSCLOSE" command less "$@"
+    }
+    if [ -t 0 ]; then
+        _cless "$@"
+    else
+        colorize_cat | _cless "$@"
+    fi
+}
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -103,6 +126,10 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #------------------------------------------------------------------------------
 # Custom configuration
 #------------------------------------------------------------------------------
+
+# Settings for colorize (ccat and cless)
+export ZSH_COLORIZE_CHROMA_FORMATTER=terminal16m
+export ZSH_COLORIZE_STYLE="github-dark"
 
 # Use colorized versions of cat and less
 alias cat=ccat
