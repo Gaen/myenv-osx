@@ -72,7 +72,7 @@ plugins=(colored-man-pages colorize mise)
 source $ZSH/oh-my-zsh.sh
 
 # Syntax highlight - must be sourced after oh-my-zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Fix colorize_less to forward ZSH_COLORIZE_CHROMA_FORMATTER
 # This is a known bug, the fix is expected to be merged soon

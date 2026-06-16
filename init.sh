@@ -33,11 +33,12 @@ init_homebrew() {
     log "Existing .zprofile saved as .zprofile.pre-myenv"
   fi
   
-  # Rewrite .zprofile with homebrew activation
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' > ~/.zprofile
-
-  # Activate homebrew in current session
+  # Activate homebrew in current session so we can use brew commands
   eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  # Rewrite .zprofile with homebrew activation
+  # Use the active brew to resolve the correct prefix for this architecture
+  echo 'eval "$('"$(brew --prefix)"'/bin/brew shellenv)"' > ~/.zprofile
 
   # Update packages
   brew update
