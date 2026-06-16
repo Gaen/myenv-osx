@@ -17,7 +17,7 @@ log() {
 init_homebrew() {
   
   # Skip if already present
-  if [ $(which brew) ]; then
+  if [ "$(command -v brew)" ]; then
     log 'Present: homebrew'
     return
   fi
@@ -49,7 +49,7 @@ init_homebrew() {
 # Install some basic tools which require no configuration
 init_basictools() {
       
-  if [ $(which tree) ]; then
+  if [ "$(command -v tree)" ]; then
     log 'Present: tree'
   else
     log 'Installing: tree'
@@ -57,7 +57,7 @@ init_basictools() {
     log 'Installed: tree'
   fi 
 
-  if [ $(which watch) ]; then
+  if [ "$(command -v watch)" ]; then
     log 'Present: watch'
   else
     log 'Installing: watch'
@@ -65,7 +65,7 @@ init_basictools() {
     log 'Installed: watch'
   fi 
 
-  if [ $(which jq) ]; then
+  if [ "$(command -v jq)" ]; then
     log 'Present: jq'
   else
     log 'Installing: jq'
@@ -73,7 +73,7 @@ init_basictools() {
     log 'Installed: jq'
   fi 
 
-  if [ $(which htop) ]; then
+  if [ "$(command -v htop)" ]; then
     log 'Present: htop'
   else
     log 'Installing: htop'
@@ -81,7 +81,7 @@ init_basictools() {
     log 'Installed: htop'
   fi 
 
-  if [ $(which mc) ]; then
+  if [ "$(command -v mc)" ]; then
     log 'Present: midnight-commander'
   else
     log 'Installing: midnight-commander'
@@ -94,7 +94,7 @@ init_basictools() {
 init_stow() {
 
   # Install if not present
-  if [ $(which stow) ]; then
+  if [ "$(command -v stow)" ]; then
     log 'Present: stow'
   else
     log 'Installing: stow'
@@ -107,7 +107,7 @@ init_stow() {
 init_tmux() {
 
   # Install if not present
-  if [ $(which tmux) ]; then
+  if [ "$(command -v tmux)" ]; then
     log 'Present: tmux'
   else
     log 'Installing: tmux'
@@ -127,7 +127,7 @@ init_nano() {
   #
   # Require it to be a homebrew installation, because we are going 
   # to depend on extra configs that come with it.
-  if [ $(echo $(which nano) | grep $(brew --prefix)) ]; then
+  if echo "$(command -v nano)" | grep -q "$(brew --prefix)"; then
     log 'Present: nano'
   else
     log 'Installing: nano'
@@ -161,7 +161,7 @@ init_vim() {
   #
   # Require it to be a homebrew installation, because we are going to depend on
   # extra configs that come with it in `share` directory
-  if [ $(echo $(which vim) | grep $(brew --prefix)) ]; then
+  if echo "$(command -v vim)" | grep -q "$(brew --prefix)"; then
     log 'Present: vim'
   else
     log 'Installing: vim'
@@ -178,7 +178,7 @@ init_git() {
 
   # Install a homebrew version if not present
   # OSX developer tools provide some version of git, but we want a newer version and auto-updates
-  if [ $(echo $(which git) | grep $(brew --prefix)) ]; then
+  if echo "$(command -v git)" | grep -q "$(brew --prefix)"; then
     log 'Present: git'
   else
     log 'Installing: git'
@@ -243,7 +243,7 @@ init_git() {
 init_delta() {
 
   # Install if not present
-  if [ $(which delta) ]; then
+  if [ "$(command -v delta)" ]; then
     log 'Present: git-delta'
   else
     log 'Installing: git-delta'
@@ -279,7 +279,7 @@ init_delta() {
 init_chroma() {
 
   # Install if not present
-  if [ $(which chroma) ]; then
+  if [ "$(command -v chroma)" ]; then
     log 'Present: chroma'
   else
     log 'Installing: chroma'
@@ -292,7 +292,7 @@ init_chroma() {
 init_mise() {
 
   # Install if not present
-  if [ $(which mise) ]; then
+  if [ "$(command -v mise)" ]; then
     log 'Present: mise'
   else
     log 'Installing: mise'
